@@ -3,17 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/feeds"
-        android:title="Feeds"/>
+        android:title="Feeds" />
     <item
         android:id="@+id/friends"
-        android:title="Friends"/>
+        android:title="Friends" />
     <item
         android:id="@+id/about"
-        android:title="About"/>
-    <item android:id="@+id/search"
-        android:title="@string/search_title"
+        android:title="About" />
+    <item
+        android:id="@+id/search"
+        android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/ic_search_white_24dp"
-        app:showAsAction="ifRoom"
-        android:actionViewClass="android.widget.SearchView" />
+        android:title="@string/search_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_add"
+        android:title="@string/action_add"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:title="@string/action_logout"
+        app:showAsAction="never" />
 
 </menu>
