@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         // Check Authentication
         mRef = new Firebase(Constants.FIREBASE_URL);
@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        adapter.add(((Figure) dataSnapshot.getValue()).getName());
+//                        Object figureObj = dataSnapshot.getValue();
+//                        Figure figure = dataSnapshot.getValue(Figure.class);
+//                        System.out.println("Name === " + figure.getName());
+//                        System.out.println("Class type === " + figureObj.getClass().toString());
+                        adapter.add(dataSnapshot.getValue(Figure.class).getName());
 
                     }
 

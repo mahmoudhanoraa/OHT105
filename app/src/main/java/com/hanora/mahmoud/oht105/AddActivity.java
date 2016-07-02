@@ -11,16 +11,15 @@ import android.widget.ListView;
 import com.firebase.client.Firebase;
 import com.hanora.mahmoud.oht105.java.Figure;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AddActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        // Set up LisVview
-        final ListView listView = (ListView) findViewById(R.id.listView);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
-        listView.setAdapter(adapter);
 
         // Add items via the Button and EditText at the bottom of the view.
         final EditText id = (EditText) findViewById(R.id.add_etID);
@@ -34,6 +33,7 @@ public class AddActivity extends AppCompatActivity {
 
         final Button button = (Button) findViewById(R.id.add_bAdd);
 
+        assert button != null;
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Figure figure = new Figure();
@@ -45,9 +45,11 @@ public class AddActivity extends AppCompatActivity {
                 figure.setContent(content.getText().toString());
                 figure.setImage(image.getText().toString());
                 figure.setFrontNote(frontnote.getText().toString());
-                new Firebase(MainActivity.itemsUrl)
-                        .push()
-                        .setValue(figure);
+                Map<String, Object> figureMap = new HashMap<String, Object>();
+                figureMap.put("Hey", figure);
+                new Firebase(MainActivity.itemsUrl).child("" + figure.getId()).setValue(figure);
+//                        .push()
+//                        .setValue(figure);
             }
         });
     }
